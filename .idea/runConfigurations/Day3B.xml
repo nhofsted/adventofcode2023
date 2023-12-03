@@ -1,0 +1,10 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Day3B" type="Application" factoryName="Application">
+    <option name="MAIN_CLASS_NAME" value="Day3B" />
+    <module name="day3" />
+    <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/day3" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
