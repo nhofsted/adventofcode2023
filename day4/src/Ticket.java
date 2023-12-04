@@ -33,11 +33,6 @@ public class Ticket {
     }
 
     public int points() {
-        long matches = matches();
-        if (matches > 0) {
-            return (int) Math.pow(2, matches - 1);
-        } else {
-            return 0;
-        }
+        return (int) Math.pow(2, matches() - 1);
     }
 }
