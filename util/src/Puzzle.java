@@ -13,7 +13,9 @@ public abstract class Puzzle {
 
     protected void run() throws Exception {
         // First test whether we implemented the sample correctly
-        InputStream in = getInputStream("data/sample" + getClass().getName() + ".txt");
+        Path path = Path.of("data/sample.txt");
+        if(!Files.exists(path)) path = Path.of("data/sample" + getClass().getName() + ".txt");
+        InputStream in = getInputStream(path);
         BufferedReader br = new BufferedReader(new InputStreamReader(in));
         int correctSampleSolution = getSampleSolution();
         int sampleSolution = getSolution(br);
@@ -25,19 +27,18 @@ public abstract class Puzzle {
         }
 
         // Now give the solution
-        in = getInputStream("data/input.txt");
+        in = getInputStream(Path.of("data/input.txt"));
         br = new BufferedReader(new InputStreamReader(in));
         int solution = getSolution(br);
         System.out.println("The solution is: " + solution);
     }
 
-    private InputStream getInputStream(String path) throws IOException {
+    private InputStream getInputStream(Path path) throws IOException {
         InputStream in;
-        Path readPath = Path.of(path);
         try {
-            in = Files.newInputStream(readPath);
+            in = Files.newInputStream(path);
         } catch (IOException e) {
-            System.out.println("error opening file " + readPath.toAbsolutePath());
+            System.out.println("error opening file " + path.toAbsolutePath());
             throw e;
         }
         return in;
