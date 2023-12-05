@@ -4,12 +4,14 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.time.Duration;
+import java.time.Instant;
 
 public abstract class Puzzle {
 
-    protected abstract int getSampleSolution();
+    protected abstract long getSampleSolution();
 
-    protected abstract int getSolution(BufferedReader in) throws Exception;
+    protected abstract long getSolution(BufferedReader in) throws Exception;
 
     protected void run() throws Exception {
         // First test whether we implemented the sample correctly
@@ -17,8 +19,8 @@ public abstract class Puzzle {
         if(!Files.exists(path)) path = Path.of("data/sample" + getClass().getName() + ".txt");
         InputStream in = getInputStream(path);
         BufferedReader br = new BufferedReader(new InputStreamReader(in));
-        int correctSampleSolution = getSampleSolution();
-        int sampleSolution = getSolution(br);
+        long correctSampleSolution = getSampleSolution();
+        long sampleSolution = getSolution(br);
         if (sampleSolution == correctSampleSolution) {
             System.out.println("Sample solution matches");
         } else {
@@ -29,8 +31,11 @@ public abstract class Puzzle {
         // Now give the solution
         in = getInputStream(Path.of("data/input.txt"));
         br = new BufferedReader(new InputStreamReader(in));
-        int solution = getSolution(br);
+        Instant start = Instant.now();
+        long solution = getSolution(br);
+        Instant end = Instant.now();
         System.out.println("The solution is: " + solution);
+        System.out.println("Compute time: " + Duration.between(start, end));
     }
 
     private InputStream getInputStream(Path path) throws IOException {

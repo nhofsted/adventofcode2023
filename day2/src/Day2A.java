@@ -7,12 +7,12 @@ public class Day2A extends Puzzle {
     }
 
     @Override
-    protected int getSampleSolution() {
+    protected long getSampleSolution() {
         return 8;
     }
 
     @Override
-    protected int getSolution(BufferedReader in) {
+    protected long getSolution(BufferedReader in) {
         return in.lines()
                 .map(Game::parse)
                 .filter(game -> game.isPossible(new int[]{12, 13, 14}))

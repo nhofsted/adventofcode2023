@@ -6,7 +6,7 @@ public class Day1A extends Puzzle {
     }
 
     @Override
-    protected int getSampleSolution() {
+    protected long getSampleSolution() {
         return 142;
     }
 
@@ -15,7 +15,7 @@ public class Day1A extends Puzzle {
     }
 
     @Override
-    protected int getSolution(BufferedReader in) {
+    protected long getSolution(BufferedReader in) {
         return in.lines()
                 .map(this::preProcess)
                 .map(line -> line

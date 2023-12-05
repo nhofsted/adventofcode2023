@@ -11,12 +11,12 @@ public class Day3A extends Puzzle {
     }
 
     @Override
-    protected int getSampleSolution() {
+    protected long getSampleSolution() {
         return 4361;
     }
 
     @Override
-    protected int getSolution(BufferedReader in) {
+    protected long getSolution(BufferedReader in) {
         Grid g = Grid.parse(in);
 
         // grow parts - this problem is separable

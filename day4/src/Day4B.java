@@ -8,12 +8,12 @@ public class Day4B extends Puzzle {
     }
 
     @Override
-    protected int getSampleSolution() {
+    protected long getSampleSolution() {
         return 30;
     }
 
     @Override
-    protected int getSolution(BufferedReader in) {
+    protected long getSolution(BufferedReader in) {
         Integer[] matches = in.lines()
                 .map(Ticket::parse)
                 .map(Ticket::matches)

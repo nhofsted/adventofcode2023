@@ -14,12 +14,12 @@ public class Day3B extends Puzzle {
     }
 
     @Override
-    protected int getSampleSolution() {
+    protected long getSampleSolution() {
         return 467835;
     }
 
     @Override
-    protected int getSolution(BufferedReader in) {
+    protected long getSolution(BufferedReader in) {
         Grid grid = Grid.parse(in);
         Engine engine = Engine.build(grid);
 

@@ -7,12 +7,12 @@ public class Day4A extends Puzzle {
     }
 
     @Override
-    protected int getSampleSolution() {
+    protected long getSampleSolution() {
         return 13;
     }
 
     @Override
-    protected int getSolution(BufferedReader in) {
+    protected long getSolution(BufferedReader in) {
         return in.lines()
                 .map(Ticket::parse)
                 .map(Ticket::points)
