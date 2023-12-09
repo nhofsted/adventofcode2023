@@ -7,12 +7,12 @@ public class Day2B extends Day2A {
     }
 
     @Override
-    protected int getSampleSolution() {
+    protected long getSampleSolution() {
         return 2286;
     }
 
     @Override
-    protected int getSolution(BufferedReader in) {
+    protected long getSolution(BufferedReader in) {
         return in.lines()
                 .map(Game::parse)
                 .map(Game::minimumBalls)

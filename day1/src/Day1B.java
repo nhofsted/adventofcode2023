@@ -17,7 +17,7 @@ public class Day1B extends Day1A {
     }
 
     @Override
-    protected int getSampleSolution() {
+    protected long getSampleSolution() {
         return 281;
     }
 
