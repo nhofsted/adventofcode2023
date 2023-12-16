@@ -9,13 +9,14 @@ public class Day13A extends Puzzle {
         new Day13A().run();
     }
 
-    private static boolean isMirror(char[] data, int pos) {
+    private static int checkMirror(char[] data, int pos) {
         int distance = Math.min(pos, data.length - pos);
+        int smudges = distance;
         int start = pos - distance;
         for (int i = 0; i < distance; ++i) {
-            if (data[start + i] != data[pos + distance - i - 1]) return false;
+            if (data[start + i] == data[pos + distance - i - 1]) smudges--;
         }
-        return true;
+        return smudges;
     }
 
     @Override
@@ -70,14 +71,14 @@ public class Day13A extends Puzzle {
         Arrays.fill(possibilities, getSmudges());
         for (char[] line : chars) {
             for (int p = 0; p < possibilities.length; ++p) {
-                if ((possibilities[p] >= 0) && !isMirror(line, p+1)) {
-                    possibilities[p]--;
+                if ((possibilities[p] >= 0)) {
+                    possibilities[p] -= checkMirror(line, p + 1);
                 }
             }
         }
 
         for (int p = 0; p < possibilities.length; ++p) {
-            if (possibilities[p] == 0) return p+1;
+            if (possibilities[p] == 0) return p + 1;
         }
         return 0;
     }
