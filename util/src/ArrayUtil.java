@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.function.IntBinaryOperator;
 
 public class ArrayUtil {
@@ -10,21 +11,11 @@ public class ArrayUtil {
         return r;
     }
 
-    public static void reverseCharArray(char[] array) {
-        int length = array.length;
-        for (int i = 0; i < length / 2; i++) {
-            char temp = array[i];
-            array[i] = array[length - i - 1];
-            array[length - i - 1] = temp;
+    public static int[][] deepClone(int[][] a) {
+        int[][] n = new int[a.length][];
+        for (int i = 0; i < n.length; i++) {
+            n[i] = Arrays.copyOf(a[i], a[i].length);
         }
-    }
-
-    public static void reverseIntArray(int[] array) {
-        int length = array.length;
-        for (int i = 0; i < length / 2; i++) {
-            int temp = array[i];
-            array[i] = array[length - i - 1];
-            array[length - i - 1] = temp;
-        }
+        return n;
     }
 }
