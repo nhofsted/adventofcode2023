@@ -44,6 +44,11 @@ class CrucibleWalkNode extends WalkNode {
     }
 
     @Override
+    public boolean isTargetNode() {
+        return x == config.width() - 1 && y == config.height() - 1 && stepsInDirection >= config.minStepsInDirection();
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;

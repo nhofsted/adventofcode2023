@@ -36,6 +36,8 @@ public abstract class WalkNode {
 
     public abstract Stream<? extends WalkNode> getNeighbours();
 
+    public abstract boolean isTargetNode();
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
