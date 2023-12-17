@@ -3,9 +3,9 @@ import java.util.Comparator;
 import java.util.HashMap;
 
 public class SortedHeapSet<T> {
-    HashMap<T, Integer> position = new HashMap<>();
-    ArrayList<T> heap = new ArrayList<>();
-    Comparator<T> comparator;
+    private final HashMap<T, Integer> position = new HashMap<>();
+    private final ArrayList<T> heap = new ArrayList<>();
+    private final Comparator<T> comparator;
 
     public SortedHeapSet(Comparator<T> comparator) {
         this.comparator = comparator;
@@ -47,13 +47,7 @@ public class SortedHeapSet<T> {
         return removed;
     }
 
-    public T get(T element) {
-        Integer pos = position.get(element);
-        if (pos == null) return null;
-        return heap.get(pos);
-    }
-
-    public T remove(T element) {
+    private T remove(T element) {
         Integer pos = position.get(element);
         if (pos == null) return null;
         position.remove(element);
