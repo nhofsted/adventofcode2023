@@ -30,7 +30,6 @@ public class City {
         while (!todo.isEmpty()) {
             WalkNode node = todo.pollFirst();
             if(node.isTargetNode()) return node.heatLoss();
-            if (node.x() == width - 1 && node.y() == height - 1) return node.heatLoss();
             node.getNeighbours()
                     .forEach(next -> {
                         next.addHeatLoss(heatLoss[next.y()][next.x()]);
