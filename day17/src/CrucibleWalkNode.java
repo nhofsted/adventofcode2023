@@ -20,8 +20,7 @@ class CrucibleWalkNode extends WalkNode {
 
     public CrucibleWalkNode(CrucibleWalkNode prev, int enterDirection) {
         super(enterDirection == NORTH ? prev.x - 1 : enterDirection == SOUTH ? prev.x + 1 : prev.x,
-                enterDirection == WEST ? prev.y - 1 : enterDirection == EAST ? prev.y + 1 : prev.y,
-                prev);
+                enterDirection == WEST ? prev.y - 1 : enterDirection == EAST ? prev.y + 1 : prev.y);
         this.config = prev.config;
         this.enterDirection = enterDirection;
         stepsInDirection = enterDirection == prev.enterDirection ? prev.stepsInDirection + 1 : 1;
@@ -31,8 +30,8 @@ class CrucibleWalkNode extends WalkNode {
     public Stream<CrucibleWalkNode> getNeighbours() {
         return Stream.of(NORTH, EAST, SOUTH, WEST)
                 .filter(d -> d != enterDirection)
+                .filter(d -> (d & enterDirection) != 0 || stepsInDirection >= config.minStepsInDirection() || enterDirection == 0)
                 .filter(d -> (d & enterDirection) == 0 || stepsInDirection < config.maxStepsInDirection())
-                .filter(d -> stepsInDirection >= config.minStepsInDirection() || (d & enterDirection) != 0 || enterDirection == 0)
                 .map(d -> switch (d) {
                     case NORTH -> new CrucibleWalkNode(this, SOUTH);
                     case EAST -> new CrucibleWalkNode(this, WEST);
@@ -52,14 +51,13 @@ class CrucibleWalkNode extends WalkNode {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
         CrucibleWalkNode that = (CrucibleWalkNode) o;
-        return enterDirection == that.enterDirection && stepsInDirection == that.stepsInDirection;
+        return x == that.x && y == that.y && enterDirection == that.enterDirection && stepsInDirection == that.stepsInDirection;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), enterDirection, stepsInDirection);
+        return Objects.hash(x, y, enterDirection, stepsInDirection);
     }
 
     public record WalkParams(int maxStepsInDirection, int minStepsInDirection, int width, int height) {

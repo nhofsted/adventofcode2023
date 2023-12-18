@@ -22,21 +22,22 @@ public class City {
     }
 
     public int findShortestDistance(WalkNode w) {
-        SortedHeapSet<WalkNode> todo = new SortedHeapSet<>(Comparator.comparingInt(node -> node.heatLoss() + heuristic(node)));
-        todo.add(w);
-
         HashMap<WalkNode, Integer> best = new HashMap<>();
+
+        SortedHeapSet<WalkNode> todo = new SortedHeapSet<>(Comparator.comparingInt(node -> best.get(node) + heuristic(node)));
+        best.put(w, 0);
+        todo.add(w);
 
         while (!todo.isEmpty()) {
             WalkNode node = todo.pollFirst();
-            if(node.isTargetNode()) return node.heatLoss();
+            if (node.isTargetNode()) return best.get(node);
             node.getNeighbours()
                     .forEach(next -> {
-                        next.addHeatLoss(heatLoss[next.y()][next.x()]);
+                        int nextHeatLoss = best.get(node) + heatLoss[next.y()][next.x()];
                         Integer bestHeatLoss = best.get(next);
-                        if (bestHeatLoss == null || next.heatLoss() < bestHeatLoss) {
+                        if (bestHeatLoss == null || nextHeatLoss < bestHeatLoss) {
+                            best.put(next, nextHeatLoss);
                             todo.add(next);
-                            best.put(next, next.heatLoss());
                         }
                     });
         }
