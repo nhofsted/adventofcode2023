@@ -1,3 +1,5 @@
+package math;
+
 public class MathUtil {
     public static long gcd(long number1, long number2) {
         if (number1 == 0 || number2 == 0) {

@@ -1,0 +1,14 @@
+broadcaster -> a, w
+%a -> b, sa
+%b -> c, sa
+%c -> d
+%d -> sa
+&sa -> a, c, ia
+&ia -> t
+%w -> x, sy
+%x -> y,
+%y -> z, sy
+%z -> sy
+&sy -> w, x, iy
+&iy -> t
+&t -> rx
