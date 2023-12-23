@@ -15,8 +15,8 @@ public abstract class Puzzle {
 
     protected void run() throws Exception {
         // First test whether we implemented the sample correctly
-        Path path = Path.of("data/sample.txt");
-        if(!Files.exists(path)) path = Path.of("data/sample" + getClass().getName() + ".txt");
+        Path path = Path.of("data/sample" + getClass().getName() + ".txt");
+        if(!Files.exists(path)) path = Path.of("data/sample.txt");
         InputStream in = getInputStream(path);
         BufferedReader br = new BufferedReader(new InputStreamReader(in));
         long correctSampleSolution = getSampleSolution();
